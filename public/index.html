@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进销存管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .features h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>进销存管理系统</h1>
+            <p class="subtitle">全面的库存、采购、销售和财务管理解决方案</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="productCount">0</div>
+                <div class="stat-label">产品总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="supplierCount">0</div>
+                <div class="stat-label">供应商数量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="customerCount">0</div>
+                <div class="stat-label">客户数量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="warehouseCount">0</div>
+                <div class="stat-label">仓库数量</div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card" onclick="navigateTo('/products')">
+                <h3>产品管理</h3>
+                <p>管理商品信息、分类、价格和库存设置</p>
+            </div>
+            <div class="card" onclick="navigateTo('/suppliers')">
+                <h3>供应商管理</h3>
+                <p>管理供应商信息、采购往来和付款记录</p>
+            </div>
+            <div class="card" onclick="navigateTo('/customers')">
+                <h3>客户管理</h3>
+                <p>管理客户信息、销售往来和收款记录</p>
+            </div>
+            <div class="card" onclick="navigateTo('/inventory')">
+                <h3>库存管理</h3>
+                <p>实时库存查询、调拨、盘点和预警</p>
+            </div>
+            <div class="card" onclick="navigateTo('/purchases')">
+                <h3>采购管理</h3>
+                <p>采购订单、收货、退货和应付账款</p>
+            </div>
+            <div class="card" onclick="navigateTo('/sales')">
+                <h3>销售管理</h3>
+                <p>销售订单、发货、退货和应收账款</p>
+            </div>
+            <div class="card" onclick="navigateTo('/finance')">
+                <h3>财务管理</h3>
+                <p>收支明细、账款核对和财务报表</p>
+            </div>
+            <div class="card" onclick="navigateTo('/reports')">
+                <h3>报表中心</h3>
+                <p>销售分析、库存报表和财务统计</p>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>系统功能特色</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>多渠道销售支持</strong><br>
+                    支持批发、零售、POS端等多种销售模式
+                </div>
+                <div class="feature-item">
+                    <strong>供应链管理</strong><br>
+                    从采购到销售的完整供应链跟踪
+                </div>
+                <div class="feature-item">
+                    <strong>库存预警</strong><br>
+                    最低/最高库存预警，防止缺货或积压
+                </div>
+                <div class="feature-item">
+                    <strong>往来账务</strong><br>
+                    供应商和客户的应收应付账款管理
+                </div>
+                <div class="feature-item">
+                    <strong>换货管理</strong><br>
+                    完整的销售换货流程支持
+                </div>
+                <div class="feature-item">
+                    <strong>多仓库支持</strong><br>
+                    支持多仓库管理及库存调拨
+                </div>
+                <div class="feature-item">
+                    <strong>连锁店管理</strong><br>
+                    支持多门店统一管理
+                </div>
+                <div class="feature-item">
+                    <strong>盘点功能</strong><br>
+                    支持盘点机，提高盘点效率
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>进销存管理系统 &copy; 2026 - 为企业提供全面的库存管理解决方案</p>
+        </footer>
+    </div>
+
+    <script>
+        // 模拟获取统计数据
+        async function loadStats() {
+            try {
+                // 这里应该调用API获取真实数据
+                // 为了演示，我们使用模拟数据
+                document.getElementById('productCount').textContent = '4';
+                document.getElementById('supplierCount').textContent = '3';
+                document.getElementById('customerCount').textContent = '3';
+                document.getElementById('warehouseCount').textContent = '3';
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        function navigateTo(section) {
+            alert(`导航到: ${section}
+
+实际应用中这里会跳转到对应的功能页面。
+
+当前系统已实现API接口，可通过${window.location.origin}/api/v1/${section.replace('/', '')}访问数据。`);
+        }
+
+        // 页面加载完成后获取统计数据
+        document.addEventListener('DOMContentLoaded', loadStats);
+    </script>
+</body>
+
+</html>

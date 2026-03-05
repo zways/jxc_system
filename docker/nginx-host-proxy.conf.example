@@ -1,0 +1,56 @@
+# ============================================================
+#  宿主机 Nginx 反向代理：将域名指向 Docker 进销存
+#
+#  用法：
+#  1. 把本文件复制到宿主机 nginx 配置目录，并改名为你的站点配置，例如：
+#     sudo cp docker/nginx-host-proxy.conf.example /etc/nginx/sites-available/jxc
+#  2. 把下面 server_name、proxy_pass 中的域名和端口按实际情况修改
+#  3. 若该域名原先指向别的站，先备份/删除或改名原配置，再启用本配置：
+#     sudo ln -sf /etc/nginx/sites-available/jxc /etc/nginx/sites-enabled/
+#  4. 测试并重载：sudo nginx -t && sudo nginx -s reload
+# ============================================================
+
+server {
+    listen 80;
+    listen [::]:80;
+    # 改成你的域名（可多个，空格分隔）
+    server_name www.abc.com abc.com;
+
+    # 日志（可选，便于排查）
+    access_log /var/log/nginx/jxc_access.log;
+    error_log  /var/log/nginx/jxc_error.log;
+
+    # 反向代理到 Docker 进销存（端口与 .env 的 APP_PORT 一致，未设置时 docker-compose 默认为 8080）
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+
+    # 若宿主机已配置 HTTPS（如 Let's Encrypt），可增加下面 server 块并改 server_name
+    # server {
+    #     listen 443 ssl;
+    #     listen [::]:443 ssl;
+    #     server_name www.abc.com abc.com;
+    #     ssl_certificate     /path/to/fullchain.pem;
+    #     ssl_certificate_key /path/to/privkey.pem;
+    #     location / {
+    #         proxy_pass http://127.0.0.1:8080;
+    #         proxy_http_version 1.1;
+    #         proxy_set_header Host $host;
+    #         proxy_set_header X-Real-IP $remote_addr;
+    #         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #         proxy_set_header X-Forwarded-Proto $scheme;
+    #         proxy_set_header X-Forwarded-Host $host;
+    #         proxy_set_header X-Forwarded-Port $server_port;
+    #     }
+    # }
+}

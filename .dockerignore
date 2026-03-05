@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.idea
+.vscode
+.cursor
+*.swp
+*.swo
+
+# Node
+node_modules
+
+# Laravel
+vendor
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# 测试
+tests
+phpunit.xml
+.env.ci
+.env.testing
+
+# Docker
+docker-compose*.yml
+Dockerfile
+
+# 文档
+*.md
+docs/

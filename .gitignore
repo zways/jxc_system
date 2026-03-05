@@ -1,0 +1,49 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+Homestead.json
+Homestead.yaml
+Thumbs.db
+
+# Ignore all env variants, but keep template
+.env.*
+!.env.example
+
+# Local test artifacts
+/playwright-report
+/test-results
+
+# Sensitive local docs
+/TEST_ACCOUNTS.md
+/TEST_REPORT_*.md
+/API_TEST_REPORT.md
+/test_report.json
+
+# Local full data dump (contains sample/real-like data)
+/jxc_system_structure_and_data.sql
+
+.parcel-cache/
+/tests
+/cookies.txt
+/dashboard_page.html
+/login_page.html
