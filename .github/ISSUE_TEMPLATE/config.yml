@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题私下披露
+    url: https://github.com/zways/jxc_system/security/advisories/new
+    about: 请勿在公开 Issue 直接披露安全漏洞细节。

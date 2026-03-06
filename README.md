@@ -1,8 +1,12 @@
 # 进销存管理系统
 
+基于 Laravel + Vue 的多企业进销存管理系统，覆盖采购、销售、库存、财务全流程，支持角色权限控制、企业数据隔离与 API 驱动架构。
+
+English: A multi-tenant inventory management system built with Laravel and Vue, covering purchasing, sales, stock, and finance workflows with role-based access control.
+
 ## 项目概述
 
-这是一个功能全面的进销存管理系统，支持批发销售、零售销售、供应商往来帐务管理、客户往来帐务管理、销售换货、业务员管理、POS 端销售管理、财务管理、库存盘点及连锁店管理等功能。
+这是一个面向企业场景的进销存系统（ERP/POS），支持批发销售、零售销售、供应商往来账务、客户往来账务、销售换货、业务员管理、财务管理、库存盘点及多门店管理。
 
 ## 系统特点
 
@@ -15,6 +19,7 @@
 ## 技术栈
 
 -   **后端**: Laravel 12.x / PHP 8.x
+-   **前端**: Vue 3 / Vite / Element Plus
 -   **数据库**: MySQL / SQLite
 -   **API**: RESTful API 设计
 -   **缓存**: Redis (可选)
@@ -112,6 +117,18 @@
 ## API 使用
 
 详细 API 文档请参考 `API_DOCUMENTATION.md` 文件。
+
+## 开源协作
+
+-   贡献指南：`CONTRIBUTING.md`
+-   安全策略：`SECURITY.md`
+-   Issue 模板：`/.github/ISSUE_TEMPLATE`
+-   PR 模板：`/.github/pull_request_template.md`
+
+## GitHub About 建议
+
+-   **Description**: 基于 Laravel + Vue 的多企业进销存管理系统，覆盖采购、销售、库存、财务全流程，支持权限控制、企业数据隔离与 API 驱动。
+-   **Topics**: `laravel`, `vue3`, `inventory-management`, `erp`, `pos`, `multi-tenant`, `rest-api`, `mysql`, `vite`, `element-plus`
 
 ## 系统优势
 
