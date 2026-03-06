@@ -122,6 +122,8 @@ English: A multi-tenant inventory management system built with Laravel and Vue, 
 
 -   贡献指南：`CONTRIBUTING.md`
 -   安全策略：`SECURITY.md`
+-   行为准则：`/.github/CODE_OF_CONDUCT.md`
+-   支持渠道：`/.github/SUPPORT.md`
 -   Issue 模板：`/.github/ISSUE_TEMPLATE`
 -   PR 模板：`/.github/pull_request_template.md`
 
